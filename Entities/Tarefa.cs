@@ -12,7 +12,7 @@ namespace DioAgendamentoTarefasApi.Entities
             Date = date;
             Status = Status.Pendente;
         }
-        public Guid Id { get; }
+        public Guid Id { get; private set; }
         public string Titulo { get; private set; }
         public string Descricao { get; private set; }
         public DateTime Date { get; private set; }

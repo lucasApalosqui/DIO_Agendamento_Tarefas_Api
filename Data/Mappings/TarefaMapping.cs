@@ -10,8 +10,10 @@ namespace DioAgendamentoTarefasApi.Data.Mappings
         {
             builder.ToTable("Tbl_Tarefa");
 
+            builder.HasKey(x => x.Id);
+
             builder.Property(x => x.Id)
-                .UseIdentityColumn();
+                .ValueGeneratedNever();
 
             builder.Property(x => x.Titulo)
                 .HasColumnName("Titulo")
