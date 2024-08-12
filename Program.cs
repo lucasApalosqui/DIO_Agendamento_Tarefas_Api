@@ -1,3 +1,6 @@
+using DioAgendamentoTarefasApi.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +11,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    options.UseSqlServer(connectionString);
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
