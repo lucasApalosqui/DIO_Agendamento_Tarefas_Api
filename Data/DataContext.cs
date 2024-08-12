@@ -1,4 +1,5 @@
-﻿using DioAgendamentoTarefasApi.Entities;
+﻿using DioAgendamentoTarefasApi.Data.Mappings;
+using DioAgendamentoTarefasApi.Entities;
 using Microsoft.EntityFrameworkCore;
 namespace DioAgendamentoTarefasApi.Data
 {
@@ -11,5 +12,10 @@ namespace DioAgendamentoTarefasApi.Data
         }
 
         public DbSet<Tarefa> Tarefas { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new TarefaMapping());
+        }
     }
 }
