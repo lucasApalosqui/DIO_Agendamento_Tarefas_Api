@@ -71,9 +71,9 @@ namespace DioAgendamentoTarefasApi.Services.TarefaServices
             };
         }
 
-        public async Task<List<GetTarefasViewModel>> GetTarefasByData(DataContext context, DateTime date)
+        public async Task<List<GetTarefasViewModel>> GetTarefasByData(DataContext context, GetTarefasByDataViewModel model)
         {
-            var tarefas = await context.Tarefas.Where(x => x.Date == date).ToListAsync();
+            var tarefas = await context.Tarefas.Where(x => x.Date == model.date).ToListAsync();
             if (tarefas.Count == 0)
                 return null;
 
@@ -91,7 +91,7 @@ namespace DioAgendamentoTarefasApi.Services.TarefaServices
 
         public async Task<List<GetTarefasViewModel>> GetTarefasByTitulo(DataContext context, string titulo)
         {
-            var tarefas = await context.Tarefas.Where(x => x.Titulo == titulo).ToListAsync();
+            var tarefas = await context.Tarefas.Where(x => x.Titulo.Contains(titulo)).ToListAsync();
             if (tarefas.Count == 0)
                 return null;
 
